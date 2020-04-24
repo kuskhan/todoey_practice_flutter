@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  bool check01 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +70,42 @@ class TasksScreen extends StatelessWidget {
                   topLeft: Radius.circular(20.0),
                   topRight: Radius.circular(20.0),
                 ),
+              ),
+              child: ListView(
+                padding: EdgeInsets.only(
+                  top: 30.0,
+                  left: 30.0,
+                  right: 30.0,
+                ),
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Buy milk',
+                          style: TextStyle(
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Theme(
+                          data: ThemeData(
+                            unselectedWidgetColor: Colors.black,
+                          ),
+                          child: Checkbox(
+                            value: check01,
+                            onChanged: (value) {
+                              setState(() {
+                                check01 = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
