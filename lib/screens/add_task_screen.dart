@@ -5,7 +5,7 @@ import 'package:todoeyflutter/models/task_data.dart';
 class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String newTask;
+    String newTaskTitle;
 
     return Container(
       color: Color(0xFF757575),
@@ -33,7 +33,7 @@ class AddTaskScreen extends StatelessWidget {
               autofocus: true,
               textAlign: TextAlign.center,
               onChanged: (newText) {
-                newTask = newText;
+                newTaskTitle = newText;
               },
             ),
             FlatButton(
@@ -46,7 +46,7 @@ class AddTaskScreen extends StatelessWidget {
               color: Colors.lightBlueAccent,
               onPressed: () {
                 Provider.of<TaskData>(context, listen: false)
-                    .addTask(Task(name: newTask));
+                    .addTask(Task(name: newTaskTitle));
                 Navigator.pop(context);
               },
             ),

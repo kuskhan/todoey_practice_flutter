@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'dart:collection';
 
 class Task {
   final String name;
@@ -8,23 +9,27 @@ class Task {
 }
 
 class TaskData extends ChangeNotifier {
-  List<Task> tasks = [
+  List<Task> _tasks = [
     Task(name: 'Buy milk'),
     Task(name: 'Buy eggs'),
     Task(name: 'Buy bread'),
   ];
 
+  UnmodifiableListView<Task> get tasks {
+    return UnmodifiableListView(_tasks);
+  }
+
   int get taskCount {
-    return tasks.length;
+    return _tasks.length;
   }
 
   void addTask(task) {
-    tasks.add(task);
+    _tasks.add(task);
     notifyListeners();
   }
 
   void toggleTask(index) {
-    tasks[index].isDone = !tasks[index].isDone;
+    _tasks[index].isDone = !_tasks[index].isDone;
     notifyListeners();
   }
 }
