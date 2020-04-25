@@ -11,7 +11,12 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TaskData taskData = Provider.of<TaskData>(context, listen: false);
+
     return ListTile(
+      onLongPress: () {
+        taskData.deleteTask(taskIndex);
+      },
       title: Text(
         taskTitle,
         style: TextStyle(
@@ -22,7 +27,7 @@ class TaskTile extends StatelessWidget {
         activeColor: Colors.lightBlueAccent,
         value: isChecked,
         onChanged: (value) {
-          Provider.of<TaskData>(context, listen: false).toggleTask(taskIndex);
+          taskData.toggleTask(taskIndex);
         },
       ),
     );
